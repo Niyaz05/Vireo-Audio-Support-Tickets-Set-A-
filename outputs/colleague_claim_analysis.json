@@ -1,0 +1,13 @@
+{
+  "transferred_tickets": 981,
+  "not_transferred_tickets": 10285,
+  "transferred_repeat_rate_pct": 3.5,
+  "not_transferred_repeat_rate_pct": 4.4,
+  "transferred_phrase_count": 59,
+  "transferred_phrase_rate_pct": 6.0,
+  "not_transferred_phrase_count": 559,
+  "not_transferred_phrase_rate_pct": 5.4,
+  "transferred_chat_share_pct": 41.9,
+  "auto_closed_repeat_rate_pct": 4.8,
+  "fast_resolved_repeat_rate_pct": 2.0
+}

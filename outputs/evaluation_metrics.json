@@ -1,0 +1,390 @@
+{
+  "test_sample_size": 49,
+  "accuracy": 0.694,
+  "error_rate": 0.306,
+  "macro_f1": 0.595,
+  "per_category": {
+    "Account & Login": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.667,
+      "support": 2
+    },
+    "App & Firmware Issues": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "Audio & Sound Quality": {
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1": 0.75,
+      "support": 4
+    },
+    "Battery & Charging": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.857,
+      "support": 3
+    },
+    "Billing & Payment": {
+      "precision": 0.5,
+      "recall": 0.75,
+      "f1": 0.6,
+      "support": 4
+    },
+    "Connectivity & Bluetooth": {
+      "precision": 0.714,
+      "recall": 0.833,
+      "f1": 0.769,
+      "support": 6
+    },
+    "Delivery & Shipping": {
+      "precision": 0.833,
+      "recall": 0.833,
+      "f1": 0.833,
+      "support": 6
+    },
+    "Other": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    "Physical Damage & Build": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    "Product Enquiry": {
+      "precision": 1.0,
+      "recall": 0.333,
+      "f1": 0.5,
+      "support": 3
+    },
+    "Returns & Refunds": {
+      "precision": 0.778,
+      "recall": 0.583,
+      "f1": 0.667,
+      "support": 12
+    },
+    "Warranty & Repair": {
+      "precision": 0.333,
+      "recall": 1.0,
+      "f1": 0.5,
+      "support": 1
+    }
+  },
+  "confusion_matrix": {
+    "Account & Login": {
+      "Account & Login": 2,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 0
+    },
+    "App & Firmware Issues": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 4,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 0
+    },
+    "Audio & Sound Quality": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 3,
+      "Battery & Charging": 0,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 1,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 0
+    },
+    "Battery & Charging": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 3,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 0
+    },
+    "Billing & Payment": {
+      "Account & Login": 1,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 3,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 0
+    },
+    "Connectivity & Bluetooth": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 5,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 1,
+      "Warranty & Repair": 0
+    },
+    "Delivery & Shipping": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 1,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 5,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 0
+    },
+    "Other": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 1,
+      "Battery & Charging": 0,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 1,
+      "Warranty & Repair": 0
+    },
+    "Physical Damage & Build": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 2
+    },
+    "Product Enquiry": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 1,
+      "Connectivity & Bluetooth": 1,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 1,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 0
+    },
+    "Returns & Refunds": {
+      "Account & Login": 1,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 1,
+      "Billing & Payment": 1,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 1,
+      "Other": 0,
+      "Physical Damage & Build": 1,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 7,
+      "Warranty & Repair": 0
+    },
+    "Warranty & Repair": {
+      "Account & Login": 0,
+      "App & Firmware Issues": 0,
+      "Audio & Sound Quality": 0,
+      "Battery & Charging": 0,
+      "Billing & Payment": 0,
+      "Connectivity & Bluetooth": 0,
+      "Delivery & Shipping": 0,
+      "Other": 0,
+      "Physical Damage & Build": 0,
+      "Product Enquiry": 0,
+      "Returns & Refunds": 0,
+      "Warranty & Repair": 1
+    }
+  },
+  "misclassified": [
+    {
+      "ticket_id": "TK-247973",
+      "message": "Product: Pulse2\nOrder: VR884672\nPurchased: 27 Jan\nIssue: I sent the unit in 18 days ago and have heard nothing\nTried: emailed twice\nExpected: callback",
+      "true_label": "Other",
+      "predicted_label": "Returns & Refunds",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-246575",
+      "message": "hello vireo, order vr885233 (the pulse 2 earbuds). otp not comig on my number. i tried on anoother browser. please help. rgds",
+      "true_label": "Billing & Payment",
+      "predicted_label": "Account & Login",
+      "confidence": 0.95
+    },
+    {
+      "ticket_id": "TK-246691",
+      "message": "Product: Nexa watch\nPurchased: 05 Oct\nIssue: the band snapped while I was putting it on this morning\nTried: tried to fix pin\nExpected: callback",
+      "true_label": "Physical Damage & Build",
+      "predicted_label": "Warranty & Repair",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-246822",
+      "message": "hey\nthis is the third time.\none of them is just decoration at this point\npulse 2",
+      "true_label": "Other",
+      "predicted_label": "Audio & Sound Quality",
+      "confidence": 0.92
+    },
+    {
+      "ticket_id": "TK-241707",
+      "message": "Reallly frustrating.  Bought my Nexa 2 watch around 05 Apr from vireo.in. I have to tap ten times for one swipe to register. I already cleaned screen. Fix this or I am posting on twitter.",
+      "true_label": "Physical Damage & Build",
+      "predicted_label": "Warranty & Repair",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-243333",
+      "message": "team,\ntypo in the flat number, courier will never find it\nabhi tak kuch nahi hua",
+      "true_label": "Delivery & Shipping",
+      "predicted_label": "Billing & Payment",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-242124",
+      "message": "Dear team, Ordered pulse 1 10 days ago. The return was accepted but the amount is nowhere in my account. I emailed twice. Nothing changed. Kindly look into it. Thanks,",
+      "true_label": "Returns & Refunds",
+      "predicted_label": "Billing & Payment",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-241302",
+      "message": "team,\nwill this survive a shower\nabhi tak kuch nahi hua",
+      "true_label": "Product Enquiry",
+      "predicted_label": "Billing & Payment",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-241487",
+      "message": "helo\ncan i connect two orbit mini together",
+      "true_label": "Product Enquiry",
+      "predicted_label": "Connectivity & Bluetooth",
+      "confidence": 0.95
+    },
+    {
+      "ticket_id": "TK-254485",
+      "message": "Hi,\nBought Pulse 2 around 25-03-2026 from vireo.in. Not receiving OTP to login.\nI want a replacement.\nPlease revert, Tarun",
+      "true_label": "Returns & Refunds",
+      "predicted_label": "Account & Login",
+      "confidence": 0.97
+    },
+    {
+      "ticket_id": "TK-248523",
+      "message": "[IVR transcript] Not what I expected from Vireo. Ordered the Pulse 2 earbuds 2 weeks ago. CAN I CONNECT TWO THE PULSE 2 EARBUDS TOGETHER. I want a replacement or refund, nothing else.",
+      "true_label": "Returns & Refunds",
+      "predicted_label": "Delivery & Shipping",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-248359",
+      "message": "it goes silent for a second every few minutes & comes back, please call me on my registered number",
+      "true_label": "Audio & Sound Quality",
+      "predicted_label": "Connectivity & Bluetooth",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-250855",
+      "message": "To the Vireo Customer Care Team,\n\nI am writing with reference to my order of Pulse2 (VR908298) placed on 18-01-2026. The left one is dead every morning even though it was in the case all night. I have did the reset from the manual. I request you to p",
+      "true_label": "Returns & Refunds",
+      "predicted_label": "Battery & Charging",
+      "confidence": 0.9
+    },
+    {
+      "ticket_id": "TK-247060",
+      "message": "[IVR transcript] hey only the right one lights up wen i put them in the case anyone there",
+      "true_label": "Connectivity & Bluetooth",
+      "predicted_label": "Returns & Refunds",
+      "confidence": 0.85
+    },
+    {
+      "ticket_id": "TK-247314",
+      "message": "[IVR transcript] Honestly regrettinng this purchase. Ordered Orbit speaker 10 days ago. crackling sound in the left side. I alerady changed EQ. I want a replacement or refund, ntohing else.",
+      "true_label": "Returns & Refunds",
+      "predicted_label": "Physical Damage & Build",
+      "confidence": 0.9
+    }
+  ],
+  "baselines": {
+    "Intake-bot Baseline": {
+      "accuracy": 0.327,
+      "macro_f1": 0.279
+    },
+    "Gemma + Hybrid RRF Few-shot (this run)": {
+      "accuracy": 0.694,
+      "macro_f1": 0.595
+    }
+  },
+  "confidence_calibration": [
+    {
+      "bucket": "0.0 - 0.50",
+      "count": 0,
+      "accuracy": 0.0
+    },
+    {
+      "bucket": "0.50 - 0.70",
+      "count": 0,
+      "accuracy": 0.0
+    },
+    {
+      "bucket": "0.70 - 0.85",
+      "count": 3,
+      "accuracy": 0.667
+    },
+    {
+      "bucket": "0.85 - 1.00",
+      "count": 46,
+      "accuracy": 0.696
+    }
+  ],
+  "dominant_failure_mode": "The dominant failure is 'Physical Damage & Build' misclassified as 'Warranty & Repair' (2 of 49 test tickets). Review these tickets to refine prompt or taxonomy boundaries."
+}

@@ -1,0 +1,191 @@
+{
+  "2026-06-08_4cd72ad7b69b_v1": {
+    "week": "2026-06-08",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Delivery & Shipping, accounting for 39 tickets (19.2% of total volume).\n\n### What changed\nTotal ticket intake reached 203 contacts across channels, with chat handling 88 and email handling 67. SLA performance logged 21 breaches (10.3% breach rate), triggering \u20b96650 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-PL2 with 75 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b954420 in direct contact handling costs, alongside \u20b977355 in issued customer refunds and \u20b96650 in SLA penalty credits. Valid CSAT closed at 3.2.\n\n### Worth investigating\nInvestigate elevated volume in Delivery & Shipping on SKU VA-EB-PL2, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "4cd72ad7b69b",
+    "prompt_version": "v1"
+  },
+  "2026-06-15_1547d1479f2d_v1": {
+    "week": "2026-06-15",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Delivery & Shipping, accounting for 31 tickets (18.6% of total volume).\n\n### What changed\nTotal ticket intake reached 167 contacts across channels, with chat handling 78 and email handling 50. SLA performance logged 19 breaches (11.4% breach rate), triggering \u20b96650 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-PL2 with 69 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b944620 in direct contact handling costs, alongside \u20b9119834 in issued customer refunds and \u20b96650 in SLA penalty credits. Valid CSAT closed at 3.15.\n\n### Worth investigating\nInvestigate elevated volume in Delivery & Shipping on SKU VA-EB-PL2, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "1547d1479f2d",
+    "prompt_version": "v1"
+  },
+  "2026-06-22_0f8d9ae76981_v1": {
+    "week": "2026-06-22",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Delivery & Shipping, accounting for 34 tickets (17.1% of total volume).\n\n### What changed\nTotal ticket intake reached 199 contacts across channels, with chat handling 94 and email handling 68. SLA performance logged 15 breaches (7.5% breach rate), triggering \u20b95250 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-PL2 with 80 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b953020 in direct contact handling costs, alongside \u20b9125797 in issued customer refunds and \u20b95250 in SLA penalty credits. Valid CSAT closed at 3.31.\n\n### Worth investigating\nInvestigate elevated volume in Delivery & Shipping on SKU VA-EB-PL2, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "0f8d9ae76981",
+    "prompt_version": "v1"
+  },
+  "2026-06-29_f8bd8aaa8166_v1": {
+    "week": "2026-06-29",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Other, accounting for 8 tickets (17.4% of total volume).\n\n### What changed\nTotal ticket intake reached 46 contacts across channels, with chat handling 14 and email handling 16. SLA performance logged 2 breaches (4.3% breach rate), triggering \u20b9700 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-PL2 with 26 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b913460 in direct contact handling costs, alongside \u20b933085 in issued customer refunds and \u20b9700 in SLA penalty credits. Valid CSAT closed at 3.22.\n\n### Worth investigating\nInvestigate elevated volume in Other on SKU VA-EB-PL2, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "f8bd8aaa8166",
+    "prompt_version": "v1"
+  },
+  "2024-12-30_53e4eb7e40f1_v1": {
+    "week": "2024-12-30",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Other, accounting for 47 tickets (100.0% of total volume).\n\n### What changed\nTotal ticket intake reached 47 contacts across channels, with chat handling 21 and email handling 13. SLA performance logged 8 breaches (17.0% breach rate), triggering \u20b92800 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-PL1 with 14 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b913430 in direct contact handling costs, alongside \u20b926642 in issued customer refunds and \u20b92800 in SLA penalty credits. Valid CSAT closed at 3.48.\n\n### Worth investigating\nInvestigate elevated volume in Other on SKU VA-EB-PL1, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "53e4eb7e40f1",
+    "prompt_version": "v1"
+  },
+  "2025-01-06_5392a73393f2_v1": {
+    "week": "2025-01-06",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Other, accounting for 52 tickets (96.3% of total volume).\n\n### What changed\nTotal ticket intake reached 54 contacts across channels, with chat handling 29 and email handling 12. SLA performance logged 4 breaches (7.4% breach rate), triggering \u20b91050 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-AIR with 15 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b914010 in direct contact handling costs, alongside \u20b919247 in issued customer refunds and \u20b91050 in SLA penalty credits. Valid CSAT closed at 3.61.\n\n### Worth investigating\nInvestigate elevated volume in Other on SKU VA-EB-AIR, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "5392a73393f2",
+    "prompt_version": "v1"
+  },
+  "2025-01-13_adf0443dc047_v1": {
+    "week": "2025-01-13",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Other, accounting for 56 tickets (94.9% of total volume).\n\n### What changed\nTotal ticket intake reached 59 contacts across channels, with chat handling 22 and email handling 26. SLA performance logged 6 breaches (10.2% breach rate), triggering \u20b92100 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-AIR with 18 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b915700 in direct contact handling costs, alongside \u20b922599 in issued customer refunds and \u20b92100 in SLA penalty credits. Valid CSAT closed at 3.52.\n\n### Worth investigating\nInvestigate elevated volume in Other on SKU VA-EB-AIR, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "adf0443dc047",
+    "prompt_version": "v1"
+  },
+  "2025-01-20_ca0ec5fefee1_v1": {
+    "week": "2025-01-20",
+    "digest_text": "### Top complaint\nThe primary driver of customer contacts this week was Other, accounting for 11 tickets (100.0% of total volume).\n\n### What changed\nTotal ticket intake reached 11 contacts across channels, with chat handling 7 and email handling 1. SLA performance logged 2 breaches (18.2% breach rate), triggering \u20b9700 in automated policy SLA credits.\n\n### Product signal\nThe highest ticket concentration occurred on SKU VA-EB-AIR with 3 customer contacts registered during the period.\n\n### Repeat-contact signal\nRepeat contacts within 30 days of prior resolution logged 0 verified repeat cases (0.0% repeat contact rate).\n\n### Cost signal\nFrontline operations incurred \u20b93010 in direct contact handling costs, alongside \u20b96207 in issued customer refunds and \u20b9700 in SLA penalty credits. Valid CSAT closed at 4.0.\n\n### Worth investigating\nInvestigate elevated volume in Other on SKU VA-EB-AIR, particularly tickets experiencing repeat touches within the 30-day resolution window.\n",
+    "source": "fallback_ollama_offline",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "ca0ec5fefee1",
+    "prompt_version": "v1"
+  },
+  "2024-12-30_41082cbafbbe_v1": {
+    "week": "2024-12-30",
+    "digest_text": "### Top complaint\nThe top complaint category was Connectivity & Bluetooth, accounting for 25.0% of the volume with 6 tickets.\n\n### What changed\nTotal tickets recorded were 24. The channel breakdown showed 10 contacts via chat, 7 via email, 3 via social, and 4 via voice.\n\n### Product signal\nThe top product SKU was VA-EB-PL1, which accounted for a volume of 6 out of the total 24 tickets.\n\n### Repeat-contact signal\nThere were 0 repeat contacts recorded, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe contact cost was INR 6720. There was an SLA breach count of 3, representing an SLA breach rate of 12.5%, and associated with an SLA credit cost of INR 1050. The total refund amount recorded was INR 8807.\n\n### Worth investigating\nThe average CSAT score for the week was 3.43.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "41082cbafbbe",
+    "prompt_version": "v1"
+  },
+  "2024-12-30_22618967501c_v1": {
+    "week": "2024-12-30",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 25.0% of the volume with 10 tickets.\n\n### What changed\nTotal tickets processed were 40. The average CSAT recorded was 3.52.\n\n### Product signal\nThe top product SKU was VA-EB-PL1, associated with a volume of 11.\n\n### Repeat-contact signal\nThere were 0 repeat contacts, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total refund amount recorded was 20818 INR. The contact cost was 11290 INR, and the SLA credit cost was 2450 INR.\n\n### Worth investigating\nThere were 7 instances of SLA breaches, representing a rate of 17.5%. Channel volume breakdown showed Chat with 17 contacts, Email with 12 contacts, Social with 4 contacts, and Voice with 7 contacts.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "22618967501c",
+    "prompt_version": "v1"
+  },
+  "2025-01-20_7727362f1a18_v1": {
+    "week": "2025-01-20",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 29.3% of the volume with 24 tickets.\n\n### What changed\nTotal tickets processed were 82. The average CSAT recorded was 3.49.\n\n### Product signal\nThe top product SKU was VA-EB-PL1, associated with a volume of 27.\n\n### Repeat-contact signal\nThere were 0 repeat contacts, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total refund amount recorded was 49636 INR. The contact cost was 22250 INR, and the SLA credit cost was 1400 INR.\n\n### Worth investigating\nSLA breaches totaled 4 instances, representing a rate of 4.9%. Channel volume breakdown showed Chat at 35, Email at 27, Social at 9, and Voice at 11.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "7727362f1a18",
+    "prompt_version": "v1"
+  },
+  "2025-01-27_ab4ef1a55898_v1": {
+    "week": "2025-01-27",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for a share of 31.3% and representing 21 tickets out of a total of 67 tickets.\n\n### What changed\nThere were 8 instances of SLA breaches, resulting in an SLA breach rate of 11.9%.\n\n### Product signal\nThe top product SKU was VA-EB-PL1, associated with a volume of 19 units.\n\n### Repeat-contact signal\nThe repeat contacts count was 0, and the repeat rate percentage was 0.0%.\n\n### Cost signal\nThe total contact cost was 20770 INR, and the refund total was 34124 INR. The SLA credit cost was 2800 INR.\n\n### Worth investigating\nChannel volume breakdown shows Chat with 25 contacts, Email with 20 contacts, Social with 4 contacts, and Voice with 18 contacts.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "ab4ef1a55898",
+    "prompt_version": "v1"
+  },
+  "2025-02-03_bdb6fc626ced_v1": {
+    "week": "2025-02-03",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 21.8% of the volume with 17 tickets.\n\n### What changed\nTotal tickets processed were 78. The average CSAT recorded was 3.5.\n\n### Product signal\nThe top product SKU associated with complaints was VA-EB-PL1, which accounted for 13 units in total volume.\n\n### Repeat-contact signal\nThere were 0 repeat contacts recorded, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe contact cost was INR 19890. There were 7 SLA breaches, representing a 9.0% breach rate, and associated with an SLA credit cost of INR 2450. A total refund amount of INR 45564 was recorded.\n\n### Worth investigating\nChannel volume breakdown shows Chat at 35 contacts, Email at 27 contacts, Social at 10 contacts, and Voice at 6 contacts.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "bdb6fc626ced",
+    "prompt_version": "v1"
+  },
+  "2025-02-10_25a3b69a5aa2_v1": {
+    "week": "2025-02-10",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 31.9% of the volume with 15 tickets.\n\n### What changed\nTotal tickets for the week ending 2025-02-10 reached 47. The channel breakdown showed Chat at 15 contacts, Email at 16 contacts, Social at 9 contacts, and Voice at 7 contacts.\n\n### Product signal\nThe top product SKU was VA-EB-PL1, associated with a volume of 10 tickets.\n\n### Repeat-contact signal\nThere were 0 repeat contacts recorded, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total contact cost was 13110 INR. There were 5 SLA breaches, representing an SLA breach rate of 10.6%, and associated with an SLA credit cost of 1750 INR. A refund total of 51335 INR was recorded.\n\n### Worth investigating\nThe average CSAT score for the week was 2.95.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "25a3b69a5aa2",
+    "prompt_version": "v1"
+  },
+  "2025-01-20_0d3497b02b57_v1": {
+    "week": "2025-01-20",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 24.4% of the volume with 20 tickets.\n\n### What changed\nTotal tickets processed were 82. The average CSAT was 3.49.\n\n### Product signal\nThe top product SKU was VA-EB-PL1, associated with a volume of 27.\n\n### Repeat-contact signal\nThere were 0 repeat contacts recorded, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total refund amount was 49636 INR. The contact cost was 22250 INR, and the SLA credit cost was 1400 INR.\n\n### Worth investigating\nSLA breaches totaled 4 instances, representing a rate of 4.9%. Channel volume breakdown showed Chat at 35, Email at 27, Social at 9, and Voice at 11.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "0d3497b02b57",
+    "prompt_version": "v1"
+  },
+  "2025-01-27_503684f355a9_v1": {
+    "week": "2025-01-27",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 23.9% of the volume with 16 tickets.\n\n### What changed\nTotal tickets processed were 67. The average CSAT recorded was 3.48.\n\n### Product signal\nThe top product SKU was VA-EB-PL1, associated with a volume of 19.\n\n### Repeat-contact signal\nThere were 0 repeat contacts, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total contact cost was 20770 INR. The SLA breach count was 8, representing an 11.9% breach rate, with associated SLA credit costs totaling 2800 INR. A refund total of 34124 INR was recorded.\n\n### Worth investigating\nChannel volume breakdown showed Chat at 25, Email at 20, Social at 4, and Voice at 18.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "503684f355a9",
+    "prompt_version": "v1"
+  },
+  "2025-02-03_b5316331147c_v1": {
+    "week": "2025-02-03",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 19.2% of the volume with 15 tickets.\n\n### What changed\nThere were 7 instances of SLA breaches, resulting in an SLA breach rate of 9.0%.\n\n### Product signal\nThe top product SKU associated with contacts was VA-EB-PL1, which accounted for 13 units out of a total of 78 tickets.\n\n### Repeat-contact signal\nThe repeat contact count was 0, and the repeat rate percentage was 0.0%.\n\n### Cost signal\nThe average cost per contact was 19890 INR. The total refund amount recorded was 45564 INR, and the SLA credit cost amounted to 2450 INR.\n\n### Worth investigating\nTotal tickets for the week of 2025-02-03 reached 78, with an average CSAT score of 3.5.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "b5316331147c",
+    "prompt_version": "v1"
+  },
+  "2026-06-08_30564384cf3e_v1": {
+    "week": "2026-06-08",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 22.7% of the volume with 46 tickets.\n\n### What changed\nTotal tickets processed were 203. The average CSAT recorded was 3.2.\n\n### Product signal\nThe top product SKU was VA-EB-PL2, associated with a volume of 75 units.\n\n### Repeat-contact signal\nThere were 0 repeat contacts, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total contact cost was 54420 INR. The SLA breach count was 21, representing an SLA breach rate of 10.3%, with associated SLA credit costs totaling 6650 INR. A refund total of 77355 INR was recorded.\n\n### Worth investigating\nChannel volume breakdown shows Chat at 88 contacts, Email at 67 contacts, Social at 23 contacts, and Voice at 25 contacts.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "30564384cf3e",
+    "prompt_version": "v1"
+  },
+  "2026-06-15_6ec6bee5a925_v1": {
+    "week": "2026-06-15",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 37 tickets, which represents 22.2% of the total tickets.\n\n### What changed\nThere were 19 SLA breaches recorded, resulting in an SLA breach rate of 11.4%.\n\n### Product signal\nThe top product SKU associated with contacts was VA-EB-PL2, which accounted for a volume of 69 out of 167 total tickets.\n\n### Repeat-contact signal\nThe repeat contact count was 0, and the repeat rate percentage was 0.0%.\n\n### Cost signal\nThe total refund amount recorded was 119834 INR. The average cost per contact was 44620 INR.\n\n### Worth investigating\nContact volume breakdown shows Chat at 78 contacts, Email at 50 contacts, Social at 18 contacts, and Voice at 21 contacts.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "6ec6bee5a925",
+    "prompt_version": "v1"
+  },
+  "2026-06-22_5cb8f813363f_v1": {
+    "week": "2026-06-22",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 20.1% of the volume with 40 tickets.\n\n### What changed\nTotal tickets processed were 199. The average CSAT recorded was 3.31.\n\n### Product signal\nThe top product SKU was VA-EB-PL2, associated with a volume of 80 units.\n\n### Repeat-contact signal\nThere were 0 repeat contacts, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total contact cost was 53020 INR. SLA breaches totaled 15 instances, representing a rate of 7.5%, and incurred an SLA credit cost of 5250 INR. A refund total of 125797 INR was recorded.\n\n### Worth investigating\nChannel volume breakdown showed Chat at 94 contacts, Email at 68 contacts, Social at 13 contacts, and Voice at 24 contacts.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "5cb8f813363f",
+    "prompt_version": "v1"
+  },
+  "2026-06-29_07a240132f93_v1": {
+    "week": "2026-06-29",
+    "digest_text": "### Top complaint\nThe top complaint category was Delivery & Shipping, accounting for 19.6% of the volume with 9 tickets.\n\n### What changed\nTotal tickets processed were 46. The average CSAT recorded was 3.22.\n\n### Product signal\nThe top product SKU was VA-EB-PL2, associated with a volume of 26.\n\n### Repeat-contact signal\nThere were 0 repeat contacts, resulting in a repeat rate of 0.0%.\n\n### Cost signal\nThe total refund amount recorded was 33085 INR. The contact cost was 13460 INR, and the SLA credit cost was 700 INR.\n\n### Worth investigating\nThere were 2 instances of SLA breaches, resulting in an SLA breach rate of 4.3%. Channel volume breakdown showed Chat at 14, Email at 16, Social at 7, and Voice at 9.",
+    "source": "gemma_verified",
+    "guardrail_passed": true,
+    "missing_numbers": [],
+    "facts_hash": "07a240132f93",
+    "prompt_version": "v1"
+  }
+}

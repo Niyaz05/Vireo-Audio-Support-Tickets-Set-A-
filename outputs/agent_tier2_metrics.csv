@@ -1,0 +1,7 @@
+agent_id,total_tickets,median_resolution_days,avg_csat,csat_n,team,site,shift
+A3039,91,5.089583333333334,3.0588235294117645,34,Escalations & Warranty,Indore,Morning
+A3040,158,4.083333333333334,3.0144927536231885,69,Escalations & Warranty,Bengaluru,Day
+A3041,92,3.6440972222222223,3.1666666666666665,42,Escalations & Warranty,Indore,Morning
+A3042,112,3.2847222222222223,3.0681818181818183,44,Escalations & Warranty,Bengaluru,Morning
+A3043,91,5.080555555555556,3.0,45,Escalations & Warranty,Bengaluru,Morning
+A3044,175,5.061805555555556,3.090909090909091,77,Escalations & Warranty,Indore,Day
