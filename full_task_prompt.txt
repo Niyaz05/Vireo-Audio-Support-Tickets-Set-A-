@@ -1,0 +1,125 @@
+<USER_REQUEST>
+# TASK: Build "Vireo Support Intelligence", a local, reproducible support-ticket analytics app
+
+Stack: Python 3.11+, pandas, numpy, Streamlit, Ollama (LLM + embeddings), rank_bm25, pytest.
+Nothing else unless you can justify it in DECISIONS.md. No vector DB, no LangChain, no cloud APIs. All inference is local through Ollama.
+
+Data is in ./data: tickets.csv, agents.csv, orders.csv, customers.csv, products.csv, plus README.txt, support-policy.pdf and email-thread.txt. Read README.txt, the policy and the email thread before writing any logic. Do not invent column meanings or policy rules. Cite the policy section in code comments where you apply a rule.
+
+Deliverable shape: one command runs the whole pipeline, then `streamlit run app.py`. The app must still open and show every deterministic page if Ollama is down, by reading cached outputs. Commit the AI caches to outputs/ so a reviewer doesn't need hours of inference.
+
+## 0. Working rules
+1. Python computes every number: counts, joins, dates, costs, SLA, repeat contacts, leaderboard. Gemma only does language tasks (classification, taxonomy discovery, digest wording, grounded Q&A).
+2. Before implementing business logic, run EDA and write findings to docs/eda_findings.md. Test each data hypothesis in section 1 empirically. Record what you found and the decision you took in DECISIONS.md (one line each: decision, evidence, alternative rejected).
+3. Never silently drop records. Flag them with a column (`dq_flags`) and show them in the Data Quality page. Any exclusion from a metric must be visible and counted.
+4. Keep prompts in prompts/*.txt, versioned (classify_v1.txt, v2 ...). Maintain prompts/CHANGELOG.md: what changed, why, and the validation metric before and after. Also keep a "discarded" section for approaches tried and abandoned. This feeds my screen recording.
+5. Model names are config (env OLLAMA_MODEL, OLLAMA_EMBED_MODEL). Run `ollama list` to find the real Gemma 4 tag and the embedding model. Don't guess. If the embedding model is missing, print the exact `ollama pull` command.
+
+## 1. Data traps to verify and handle (each is a known risk in the pack)
+- **Timezones.** created_at and first_response_at are IST. Legacy resolved_at (source_system=legacy_fd) was rebuilt from a UTC event log. Test for a ~5.5h offset: compare resolved_at minus created_at for legacy vs helpdesk rows, and count resolved_at < created_at or < first_response_at. If confirmed, correct legacy resolved_at by +5:30, keep the raw value, and add a flag. Note the helpdesk API exports UTC, so confirm the CSV isn't mixed.
+- **Legacy currency.** The legacy tool stored money in a "native unit". Compare the refund_amount_inr distribution for legacy vs helpdesk (for example a 100x factor) and check it against products.retail_price_inr. Normalise only if the evidence is clear, and document it.
+- **Duplicates / re-imports.** Pre-14-Sep-2025 tickets may appear under both sources, with odd IDs. Detect duplicates on ticket_id, and on a content key (customer_id, created_at, channel, product_sku, normalised customer_message). Flag them, exclude duplicates from headline metrics using a documented keep-rule, and show counts before and after. Duplicated refunds must not be double-counted.
+- **CSAT.** Blank means no response. Legacy 0 means no response. Convert both to NaN and never average zeros. Auto-closed tickets are surveyed, so check whether CSAT exists on status=closed rows.
+- **Status.** Attendance/closure = status in (resolved, closed). Exclude open and pending from closure counts. Report resolved and auto-closed separately.
+- **Category.** The `category` column is an intake-bot tag, not ground truth. Use it only as a weak hint and as a baseline to beat.
+- **Joins.** order_id is often blank. Fall back to customer_id + product_sku, and pick the latest order on or before created_at. Report the join rate and the ambiguous-match rate.
+- **Roster.** One row per assignment. Resolve an agent's team, tier, site and shift effective at resolved_at (from_date <= date <= to_date). Join on agent_id, never on name. Flag agents missing from the roster or with overlapping roster rows.
+- **Refund + replacement.** The policy forbids both for the same order. Find tickets and orders with a refund and replacement_issued=Y (also across duplicate tickets). Also check refund_reason_code against message text and notes (for example GW-OTHER used as a catch-all, or DOA-REPL on tickets that are not DOA). Report the mismatch rate.
+- **Lot codes.** Join orders.lot_code and test whether specific complaint categories (battery, connectivity, damage) concentrate in specific lots or SKUs beyond the base rate.
+- **Language.** Check whether messages include Hinglish, transliterated text, or voice IVR transcripts with transcription noise. Handle these in tokenisation and prompting.
+- **Date edges.** The window ends 30 Jun 2026. Weeks are Monday-start in IST. Flag partial first and last weeks. Repeat-contact rates need right-censoring: a ticket resolved less than 30 days before the data end can't be judged, so exclude it from the rate denominator and say so.
+
+## 2. Preprocessing (src/preprocessing.py)
+Produce outputs/tickets_clean.parquet or csv with parsed timestamps, week_start, corrected fields and the enrichments below. All calculations are deterministic and unit-tested:
+- sla_target_min by channel (chat 15, voice 120, social 240, email 480). Compute first_response_minutes, sla_breach (first response later than target). A missing first response gets its own flag and is not treated as a breach unless the policy implies it.
+- sla_credit_inr = 350 for each breach on tickets that are resolved or closed.
+- contact_cost_inr by channel (chat 210, email 260, voice 520, social 240). Also report the blended 290 for comparison. Use channel costs as primary.
+- transfer_cost_inr = transfers * 305.
+- replacement_cost_inr = products.unit_cost_inr + 340 when replacement_issued=Y.
+- handle_minutes = resolved_at - first_response_at, using corrected timestamps.
+- Mask PII in any text shown in the UI or sent to the LLM (phones, emails, long digit strings). Never show customer names.
+
+## 3. Hybrid retrieval layer (src/retrieval.py)
+Build one reusable hybrid search over customer_message (optionally combined with the product name):
+- BM25 via rank_bm25 with simple tokenisation (lowercase, strip punctuation, light stopwords, keep model-number tokens).
+- Dense vectors from an Ollama embedding model. Cache embeddings to outputs/embeddings.npy keyed by a hash of the text, and embed in batches. Use numpy cosine similarity, with no external vector store.
+- Reciprocal Rank Fusion: score = sum(1 / (k + rank_i)), k=60 configurable. Return the fused rank plus each component's rank and score so results are explainable in the UI.
+- Include a small function to evaluate BM25-only vs vector-only vs RRF on the labelled set (recall@k of same-category neighbours).
+Use it for exactly these four things and nothing else:
+1. **Few-shot retrieval for classification.** For each ticket, retrieve the top-k (default 4) labelled examples from the dev pool (never from the locked test set) and insert them in the prompt.
+2. **Repeat-contact evidence.** Text-similarity signal between a ticket and a later ticket from the same customer (see section 5).
+3. **Representative complaints.** For each category and week, pick examples by RRF against the category's centroid or top terms. Deterministic, PII-masked.
+4. **"Ask the tickets" page.** A search box where a CX manager types a question. Retrieve the top 10 tickets with hybrid search, then ask Gemma to answer using only those retrieved messages. Show the sources and the BM25, vector and RRF ranks.
+
+## 4. Taxonomy and classification (src/classifier.py)
+- Discovery: sample about 300 messages, stratified by channel and week. Ask Gemma for recurring themes in batches, then consolidate them yourself into a fixed 8-15 category taxonomy in src/config.py (include `other`). Save the discovery output and the consolidated decisions in docs/. Production classification must be unable to invent categories.
+- Classification call: one call per ticket, temperature 0, minimal `num_predict`, and structured output using Ollama's `format` JSON schema with an enum of allowed categories plus a confidence number. If the Ollama version supports a thinking toggle, turn it off. Send only customer_message (masked), product_name, the intake-bot category as a hint, and the retrieved few-shot examples. Keep the system prompt short and reuse it across calls.
+- Only classify unique normalised messages (templated messages repeat) and map results back to tickets.
+- Cache: outputs/classified_tickets.csv with ticket_id, message_hash, category, confidence, model, prompt_version, timestamp, status (ok / parse_fail / error), attempts. Skip anything already cached for the same (model, prompt_version). It must be resumable, so writing after every N tickets means an interrupted run loses little.
+- Uncertain tickets: re-run once with a stricter prompt or more examples only if confidence is below a threshold that you choose from the dev set (show the precision-vs-threshold curve). If it is still uncertain, keep the best category or `other`. Never a random fallback.
+- Failures: malformed JSON gets safe recovery (extract JSON, validate the enum), then is recorded as parse_fail and the batch continues. Ollama down, or model missing, gives a clear Streamlit and CLI message with the exact `ollama serve` / `ollama pull <model>` commands.
+- Record throughput (tickets/min, total time, calls made, cache hits) to outputs/run_stats.json and show it in the app. Local inference has no marginal cost, and the finance lead worried about surprise model bills, so state that plainly.
+
+## 5. Repeat contacts (src/repeat_contacts.py)
+Transparent, rule-based, documented in the module docstring and on the page:
+- For each resolved or closed ticket A, look at later tickets B from the same customer_id created within 30 days after A's resolved_at (use corrected timestamps).
+- Score B as a repeat of A from independent evidence: same order_id, or same product_sku (only where order_id is missing), same classified category, hybrid text-similarity above a threshold, and phrases like "already told / again / still not fixed / second time" (a small regex list). Require a minimum evidence score, and keep a `match_reason` column. Report a strict definition and a loose definition, and show the sensitivity of the rate to both.
+- Same customer alone is never a repeat.
+- Right-censor the last 30 days of data. Cost each repeat at the channel cost of the repeat ticket.
+- Test the "I already told your colleague" claim from the data. Compare transfers>0 tickets against the rest: their repeat rate, their rate of tickets whose message contains those phrases, and the share that are chat. Also look at whether a repeat is more likely after a first ticket that was transferred, auto-closed, or resolved fast. Report the finding either way, with counts. Do not assume it is true.
+- Save outputs/repeat_contacts.csv (pairs, evidence, reason).
+- Validation of the matcher: sample 50 pairs, generate a labelling sheet (same issue: Y/N), and report precision on the human labels.
+
+## 6. Analytics (src/analytics.py)
+Weekly metrics (outputs/weekly_metrics.csv): volume by channel, category, product and family; category share, WoW change (absolute and percentage-point), emerging categories (rising for N consecutive weeks, or a spike above a rolling baseline with a minimum-volume guard); SLA breach rate; transfers and transfer cost; repeat rate (censored); channel contact cost; SLA credit cost; refund total; replacement cost; average valid CSAT.
+Also: breach rate by hour of day, shift and channel (the policy notes that overnight coverage comes from the Indore night shift and breaches are reported against the resolving agent, so test whether breaches are a staffing pattern rather than an agent one).
+
+Agent leaderboard (outputs/agent_weekly_metrics.csv):
+- Tier 1 only (Chat, Email, Voice Frontline), by agent_id, attributing each closed ticket to the roster row effective at resolved_at. Metric name must be exactly "Tickets closed per week". Add a visible note that it is not a performance score.
+- Tier 2 (Escalations & Warranty) goes in a separate, unranked view showing resolution time in days, with no rank column and no side-by-side with Tier 1.
+- Show context columns next to the count so the leaderboard can't mislead: weeks active in that role, channel mix, median handle time, share auto-closed, 30-day repeat rate of the tickets they closed, average valid CSAT with n. Filters: week, team, site, shift. Show a warning where the count is confounded (for example voice callbacks take longer than chat, or an agent was on the roster for part of the period). Normalise by weeks active.
+- Do not attribute SLA breaches to agents in the leaderboard unless the data shows they are agent-driven, not queue-driven.
+
+## 7. Business opportunity engine (src/opportunity.py)
+Compute a candidate table and let the data choose the winner. Do not hard-code the answer. Candidates: repeat contacts, SLA breaches, transfers, refund+replacement policy leakage, lot- or SKU-concentrated defects, DOA-driven replacements, high-cost voice contacts that could be deflected. For each, produce: current rate, current volume, observed cost (per quarter, using the last two full quarters and stating the choice), a target with an explicit basis (for example the rate that the best-performing comparable segment already achieves, not an arbitrary number), scenario saving per quarter, and an evidence-quality grade (A/B/C with reasons). Keep three labelled layers on the page: Observed, Estimated, Scenario. Never call a scenario a forecast. Select the top opportunity by scenario saving weighted by evidence quality and addressability, and show why the others ranked lower. The Overview page should show it as: "Cut <metric> from X% to Y%, worth about Rs Z a quarter".
+
+## 8. Validation (src/validation.py)
+- Build an independent human-labelled set. Generate a labelling sheet (CSV) of about 220 tickets, stratified by channel, category, week and legacy vs helpdesk, with Gemma's output and the intake-bot category hidden. Split it into a dev set (~70, used as the few-shot pool and for prompt and threshold tuning) and a locked test set (~150, never used for tuning or as few-shot examples). Enforce the disjointness in code with an assertion.
+- Provide a minimal Streamlit labelling page (or a CSV workflow) that writes to outputs/human_labels.csv. Gemma must never produce the human labels.
+- Report on the test set only: accuracy, error rate, macro-F1, per-category precision, recall and F1, confusion matrix, and a list of misclassified examples. Compare against baselines: intake-bot category and zero-shot Gemma, and against Gemma with hybrid few-shot. Also compare BM25-only, vector-only and RRF retrieval for few-shot. Identify the dominant failure mode (for example a pair of categories that get confused, or Hinglish, or multi-issue messages) and state it in one sentence on the page.
+- Show whether confidence is informative: accuracy by confidence bucket. It is a heuristic, not a calibrated probability.
+- Digest guardrail: after Gemma writes the weekly digest, extract every number from the text and check it appears in the supplied facts JSON. If not, regenerate once, and if it still fails fall back to a deterministic template. Log the pass rate.
+
+## 9. Digest (src/digest.py)
+Python builds a facts JSON per week (only aggregates and PII-masked representative snippets). Gemma writes a short digest with these headings: Top complaint, What changed, Product signal, Repeat-contact signal, Cost signal, Worth investigating. Instructions to the model: use only supplied facts, don't modify or compute numbers, don't claim causation, no mention of AI. Cache digests per (week, facts hash, prompt version).
+
+## 10. Streamlit app (app.py, sidebar navigation)
+Overview (KPIs: total tickets, tickets this week, top complaint, repeat rate, SLA breach rate, estimated cost; plus the opportunity card) | Weekly Digest (week picker, metrics, digest, representative complaints) | Complaint Analysis (distribution, weekly trend, category x product, category x channel, lot concentration; filters for date, family, product, channel, category) | Ask the Tickets (hybrid search + grounded answer) | Agent Throughput | Repeat Contacts (methodology box, strict vs loose, "colleague" test result, censoring note) | Opportunity | Validation | Data Quality (duplicates, timestamp fixes, currency check, CSAT, join rates, roster issues, refund/replacement conflicts, parse failures, all with counts and the rule applied) | Run Stats.
+Keep it plain and professional. Label everything clearly as Observed, Estimated or Scenario where relevant. Cache data loads with st.cache_data.
+
+## 11. Project layout and reproducibility
+vearo-style layout: README.md, requirements.txt (pinned), app.py, data/, src/{config,data_loader,preprocessing,retrieval,classifier,repeat_contacts,analytics,opportunity,validation,digest}.py, prompts/, docs/, outputs/, tests/, DECISIONS.md.
+Provide `python -m src.pipeline` (preprocess, embed, classify with resume, analytics, repeat contacts, digests) and a `--limit N` flag for a fast smoke test. README must have only commands that actually work: venv setup, `ollama list`, `ollama pull` for the chat and embedding models, env vars, data location, pipeline, labelling, validation, and running Streamlit. Include a section on known limitations.
+
+## 12. Tests (pytest, keep light)
+SLA breach per channel including boundary minutes; contact cost by channel; transfer cost; replacement cost; CSAT cleaning (0 and blank become NaN); legacy timezone correction; duplicate detection; weekly aggregation; Tier 2 excluded from the leaderboard; roster effective-date attribution; repeat matching (same customer but different SKU and category is not a repeat; same order within 30 days is; day 31 is not; censoring); RRF fusion on a toy example; guardrail number checker; JSON parse recovery.
+
+## 13. Build order (stop and self-check between steps)
+1) Loader + EDA + data-quality findings. 2) Preprocessing + tests. 3) Taxonomy discovery + classifier + cache. 4) Retrieval + labelling sheet. 5) Weekly analytics + leaderboard. 6) Repeat contacts. 7) Opportunity engine. 8) Validation numbers. 9) Digest + guardrail. 10) Streamlit pages. 11) README and DECISIONS.md.
+If time runs short, protect correctness and validation over UI polish, and list what was left out and why in DECISIONS.md.
+
+Start by inspecting the data and Ollama (`ollama list`), then report the EDA findings and your proposed taxonomy before writing the full pipeline.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-29T16:23:19+05:30.
+
+The user's current state is as follows:
+Active Document: /Users/shaikniyaz/projects/banao_task1/email-thread.txt (LANGUAGE_PLAINTEXT)
+Cursor is on line: 16
+Other open documents:
+- /Users/shaikniyaz/projects/banao_task1/email-thread.txt (LANGUAGE_PLAINTEXT)
+- /Users/shaikniyaz/projects/banao_task1/README.txt (LANGUAGE_PLAINTEXT)
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Claude Opus 4.6 (Thinking). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

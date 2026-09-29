@@ -1,0 +1,7 @@
+pandas
+numpy
+streamlit
+rank_bm25
+requests
+pyarrow
+pytest

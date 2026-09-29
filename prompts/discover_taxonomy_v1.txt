@@ -1,0 +1,6 @@
+Identify recurring customer support issue themes from the following sample messages for an Indian consumer electronics brand (audio, smart accessories, wearables). Group them into 8-12 concise, mutually exclusive categories suitable for support ticket routing.
+
+Messages:
+{MESSAGES}
+
+Output the proposed categories with a 1-sentence definition and 2-3 sample phrases for each.

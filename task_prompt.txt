@@ -1,0 +1,41 @@
+<USER_REQUEST>
+# TASK: Build "Vireo Support Intelligence", a local, reproducible support-ticket analytics app
+
+Stack: Python 3.11+, pandas, numpy, Streamlit, Ollama (LLM + embeddings), rank_bm25, pytest.
+Nothing else unless you can justify it in DECISIONS.md. No vector DB, no LangChain, no cloud APIs. All inference is local through Ollama.
+
+Data is in ./data: tickets.csv, agents.csv, orders.csv, customers.csv, products.csv, plus README.txt, support-policy.pdf and email-thread.txt. Read README.txt, the policy and the email thread before writing any logic. Do not invent column meanings or policy rules. Cite the policy section in code comments where you apply a rule.
+
+Deliverable shape: one command runs the whole pipeline, then `streamlit run app.py`. The app must still open and show every deterministic page if Ollama is down, by reading cached outputs. Commit the AI caches to outputs/ so a reviewer doesn't need hours of inference.
+
+## 0. Working rules
+1. Python computes every number: counts, joins, dates, costs, SLA, repeat contacts, leaderboard. Gemma only does language tasks (classification, taxonomy discovery, digest wording, grounded Q&A).
+2. Before implementing business logic, run EDA and write findings to docs/eda_findings.md. Test each data hypothesis in section 1 empirically. Record what you found and the decision you took in DECISIONS.md (one line each: decision, evidence, alternative rejected).
+3. Never silently drop records. Flag them with a column (`dq_flags`) and show them in the Data Quality page. Any exclusion from a metric must be visible and counted.
+4. Keep prompts in prompts/*.txt, versioned (classify_v1.txt, v2 ...). Maintain prompts/CHANGELOG.md: what changed, why, and the validation metric before and after. Also keep a "discarded" section for approaches tried and abandoned. This feeds my screen recording.
+5. Model names are config (env OLLAMA_MODEL, OLLAMA_EMBED_MODEL). Run `ollama list` to find the real Gemma 4 tag and the embedding model. Don't guess. If the embedding model is missing, print
+<truncated 15474 bytes>
+dels, env vars, data location, pipeline, labelling, validation, and running Streamlit. Include a section on known limitations.
+
+## 12. Tests (pytest, keep light)
+SLA breach per channel including boundary minutes; contact cost by channel; transfer cost; replacement cost; CSAT cleaning (0 and blank become NaN); legacy timezone correction; duplicate detection; weekly aggregation; Tier 2 excluded from the leaderboard; roster effective-date attribution; repeat matching (same customer but different SKU and category is not a repeat; same order within 30 days is; day 31 is not; censoring); RRF fusion on a toy example; guardrail number checker; JSON parse recovery.
+
+## 13. Build order (stop and self-check between steps)
+1) Loader + EDA + data-quality findings. 2) Preprocessing + tests. 3) Taxonomy discovery + classifier + cache. 4) Retrieval + labelling sheet. 5) Weekly analytics + leaderboard. 6) Repeat contacts. 7) Opportunity engine. 8) Validation numbers. 9) Digest + guardrail. 10) Streamlit pages. 11) README and DECISIONS.md.
+If time runs short, protect correctness and validation over UI polish, and list what was left out and why in DECISIONS.md.
+
+Start by inspecting the data and Ollama (`ollama list`), then report the EDA findings and your proposed taxonomy before writing the full pipeline.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-29T16:23:19+05:30.
+
+The user's current state is as follows:
+Active Document: /Users/shaikniyaz/projects/banao_task1/email-thread.txt (LANGUAGE_PLAINTEXT)
+Cursor is on line: 16
+Other open documents:
+- /Users/shaikniyaz/projects/banao_task1/email-thread.txt (LANGUAGE_PLAINTEXT)
+- /Users/shaikniyaz/projects/banao_task1/README.txt (LANGUAGE_PLAINTEXT)
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Claude Opus 4.6 (Thinking). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>
